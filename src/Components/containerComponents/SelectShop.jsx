@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-function SelectShop({ selectedShop, setSelectedShop }) {
+function SelectShop({ selectedShop, setSelectedShop, setInputIsDisabled }) {
   const shops = [
     {
       name: "Lidl",
@@ -33,6 +33,10 @@ function SelectShop({ selectedShop, setSelectedShop }) {
     },
   ];
 
+  const handleSelectShop = (shop) => {
+    setSelectedShop(shop);
+    setInputIsDisabled(false)
+  };
 
   return (
     <div className="text-center space-y-2 mb-10">
@@ -44,7 +48,7 @@ function SelectShop({ selectedShop, setSelectedShop }) {
               <input
                 type="checkbox"
                 checked={selectedShop.id === shop.id ? shop : !shop}
-                onChange={() => setSelectedShop(shop)}
+                onChange={() => handleSelectShop(shop)}
                 className="mx-2 w-4 accent-gray-800  bg-gray-100 border-gray-300   "
               />
               {shop.name}

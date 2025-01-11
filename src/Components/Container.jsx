@@ -10,6 +10,8 @@ import ProductList from "./containerComponents/ProductList";
 function Container() {
   const [selectedShop, setSelectedShop] = useState({});
   const [shoppingList, setShoppingList] = useState([]);
+  const [inputIsDisabled, setInputIsDisabled] = useState(true)
+  
 
   const handleDeleteBtn = (index) => {
     setShoppingList((currentFruits) =>
@@ -23,11 +25,13 @@ function Container() {
       <SelectShop
         selectedShop={selectedShop}
         setSelectedShop={setSelectedShop}
+        setInputIsDisabled={setInputIsDisabled}
       />
       <AddProducts
         selectedShop={selectedShop}
         shoppingList={shoppingList}
         setShoppingList={setShoppingList}
+        inputIsDisabled={inputIsDisabled}
       />
       <ProductList
         shoppingList={shoppingList}
