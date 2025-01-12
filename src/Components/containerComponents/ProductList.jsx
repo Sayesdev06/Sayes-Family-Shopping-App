@@ -3,6 +3,8 @@ import Button from "../usefulComponents/Button";
 
 
 
+
+
 function ProductList({
   shoppingList,
   setShoppingList,
@@ -10,10 +12,13 @@ function ProductList({
   handleDeleteBtn,
 }) {
 
-
+  
+  
   const handleClearBtn = () => {
     setShoppingList([]);
   };
+
+  
 
   return (
     <div className="flex items-center flex-col align-center mb-10">

@@ -25,7 +25,7 @@ function AddProducts({
       setInputValue("");
     }
   };
-  console.log(inputIsDisabled)
+  
 
   return (
     <div className="flex flex-col text-center mb-10">

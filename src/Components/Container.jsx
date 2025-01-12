@@ -1,7 +1,8 @@
 import SelectShop from "../Components/containerComponents/SelectShop"
 import AddProducts from "./containerComponents/AddProducts"
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import ProductList from "./containerComponents/ProductList";
+
 
 
 
@@ -9,7 +10,12 @@ import ProductList from "./containerComponents/ProductList";
 
 function Container() {
   const [selectedShop, setSelectedShop] = useState({});
-  const [shoppingList, setShoppingList] = useState([]);
+  const [shoppingList, setShoppingList] = useState(() => {
+    const getData = localStorage.getItem("ourShoppingList");
+    return getData ? JSON.parse(getData) : []
+      
+    
+  });
   const [inputIsDisabled, setInputIsDisabled] = useState(true)
   
 
@@ -19,7 +25,17 @@ function Container() {
     );
   };
 
-  console.log(selectedShop.color);
+
+
+
+  useEffect(() => {
+    if (shoppingList.length >= 0) {
+      const dataToString = JSON.stringify(shoppingList);
+      localStorage.setItem("ourShoppingList", dataToString);
+    }
+  }, [shoppingList]);
+
+  
   return (
     <div className=" flex flex-col  flex-grow p-4 m-auto text-xs md:text-sm ">
       <SelectShop
@@ -38,6 +54,7 @@ function Container() {
         setShoppingList={setShoppingList}
         handleDeleteBtn={handleDeleteBtn}
       />
+      
     </div>
   );
 }
